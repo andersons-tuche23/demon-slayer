@@ -1,4 +1,6 @@
-import styled, { keyframes } from "styled-components";
+import Link from "next/link";
+import styled from "styled-components";
+import { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   from {
@@ -12,22 +14,21 @@ const fadeIn = keyframes`
 export const Background = styled.div`
   display: flex;
   min-height: 100vh;
-  height: 100vh; 
+  height: 100vh;
   background-image: url("/slayer.png");
   background-size: cover;
   background-position: center;
-  position: relative; 
-  flex-direction: column; 
-  overflow: hidden; 
-  
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+
   @media (max-width: 768px) {
-    flex-direction: column; 
-    overflow: hidden; 
+    flex-direction: column;
+    overflow: hidden;
   }
 `;
 
-
-export const Sidebar = styled.div<{ visible: boolean }>`
+export const Sidebar = styled.div`
   width: 250px;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
@@ -35,13 +36,23 @@ export const Sidebar = styled.div<{ visible: boolean }>`
   top: 0;
   left: 0;
   bottom: 0;
-  display: ${({ visible }) => (visible ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
   border-radius: 8px;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 
   @media (max-width: 768px) {
     width: 95%;
@@ -57,16 +68,16 @@ export const Nav = styled.nav`
   align-items: center;
 
   a {
-    font-size: 1.3rem; 
+    font-size: 1.3rem;
     color: #fff;
     text-decoration: none;
-    padding: 18px 30px; 
+    padding: 18px 30px;
     border-radius: 8px;
     background-color: #ff5733;
     transition: background-color 0.3s, transform 0.3s, padding 0.3s;
-    width: 100%; 
-    max-width: 350px; 
-    box-sizing: border-box; 
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
 
     &:hover {
       background-color: #ff4500;
@@ -82,16 +93,16 @@ export const Nav = styled.nav`
   @media (max-width: 768px) {
     a {
       font-size: 1.2rem;
-      padding: 16px 28px; 
-      max-width: 280px; 
+      padding: 16px 28px;
+      max-width: 280px;
     }
   }
 
   @media (max-width: 480px) {
     a {
-      font-size: 1.1rem; 
+      font-size: 1.1rem;
       padding: 14px 24px;
-      max-width: 250px; 
+      max-width: 250px;
     }
   }
 `;
@@ -106,8 +117,8 @@ export const MainContent = styled.div`
   justify-content: center;
 
   @media (max-width: 768px) {
-    margin-left: 0; 
-    padding-top: 80px; 
+    margin-left: 0;
+    padding-top: 80px;
   }
 `;
 
@@ -117,12 +128,12 @@ export const Header = styled.header`
 
   h1 {
     font-size: 2.8rem;
-    color: #ffa500;
+    color: #fff;
     animation: ${fadeIn} 1s ease-in-out;
-    margin-bottom: 10px;
+    margin-bottom: 75px;
 
     @media (max-width: 768px) {
-      font-size: 2rem; 
+      font-size: 2rem;
     }
   }
 
@@ -140,7 +151,7 @@ export const Header = styled.header`
 
     @media (max-width: 768px) {
       max-width: 300px;
-      margin-top: 0px; 
+      margin-top: 0px;
     }
   }
 `;
@@ -172,7 +183,7 @@ export const ToggleButton = styled.button`
   @media (max-width: 768px) {
     top: 10px;
     left: 10px;
-    padding: 10px 20px; 
+    padding: 10px 20px;
   }
 
   svg {
@@ -180,7 +191,23 @@ export const ToggleButton = styled.button`
   }
 
   &:hover svg {
-    transform: rotate(180deg); 
+    transform: rotate(180deg);
   }
 `;
 
+export const CrunchyrollLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ff640a;
+
+  span {
+    font-size: 28px;
+    font-weight: bolder;
+    font-family: sans-serif;
+  }
+
+  &:hover {
+    color: #ff4500;
+  }
+`;

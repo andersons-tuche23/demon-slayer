@@ -1,8 +1,17 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes } from "react-icons/fa"; 
-import { Header, Nav, Background, Sidebar, MainContent, ToggleButton } from "../app/home";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { SiCrunchyroll } from "react-icons/si";
+import {
+  Header,
+  Nav,
+  Background,
+  Sidebar,
+  MainContent,
+  ToggleButton,
+  CrunchyrollLink,
+} from "../app/home";
 
 interface Image {
   jpg: {
@@ -23,7 +32,7 @@ interface AnimeApiResponse {
 export default function Home() {
   const [anime, setAnime] = useState<AnimeApiResponse | null>(null);
   const [showGif, setShowGif] = useState(true);
-  const [sidebarVisible, setSidebarVisible] = useState(false); 
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   useEffect(() => {
     const gifTimer = setTimeout(() => setShowGif(false), 3000);
@@ -66,7 +75,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const toggleSidebar = () => setSidebarVisible((prev) => !prev); 
+  const toggleSidebar = () => setSidebarVisible((prev) => !prev);
 
   if (showGif) {
     return (
@@ -94,7 +103,7 @@ export default function Home() {
 
   return (
     <Background>
-      <Sidebar visible={sidebarVisible}>
+      <Sidebar className={sidebarVisible ? "open" : ""}>
         <Nav>
           <Link href="/characters">Personagens</Link>
           <Link href="/episodies">Episódios</Link>
@@ -112,6 +121,26 @@ export default function Home() {
           <img src={anime.images.jpg.image_url} alt={anime.title} />
         </Header>
       </MainContent>
+
+      <div
+        style={{
+          position: "fixed",
+          top: "20px",
+          right: "20px",
+          zIndex: 1000,
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <CrunchyrollLink
+          href="https://www.crunchyroll.com/pt-br/demon-slayer-kimetsu-no-yaiba"
+          target="_blank"
+        >
+          <SiCrunchyroll size={40} />
+          <span>Crunchyroll</span>
+        </CrunchyrollLink>
+      </div>
     </Background>
   );
 }
