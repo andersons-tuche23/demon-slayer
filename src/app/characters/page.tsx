@@ -38,8 +38,6 @@ export default function Characters() {
           throw new Error("Erro na requisição");
         }
         const data = await response.json();
-
-        console.log("Dados recebidos da API:", data);
         if (data.data && Array.isArray(data.data)) {
           setCharacters(
             data.data.map(
@@ -81,7 +79,6 @@ export default function Characters() {
       </Header>
       <CharacterList>
         {characters.map((character, index) => {
-          console.log("Character:", character);
           const key =
             character.name && character.url
               ? `${character.name}-${character.url}`
