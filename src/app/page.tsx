@@ -1,7 +1,8 @@
-"use client";
+'use client'
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Header, Nav, Background, Button, Synopsis } from "../app/home";
+import { FaBars, FaTimes } from "react-icons/fa"; 
+import { Header, Nav, Background, Sidebar, MainContent, ToggleButton } from "../app/home";
 
 interface Image {
   jpg: {
@@ -21,8 +22,8 @@ interface AnimeApiResponse {
 
 export default function Home() {
   const [anime, setAnime] = useState<AnimeApiResponse | null>(null);
-  const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const [showGif, setShowGif] = useState(true);
+  const [sidebarVisible, setSidebarVisible] = useState(false); 
 
   useEffect(() => {
     const gifTimer = setTimeout(() => setShowGif(false), 3000);
@@ -36,8 +37,6 @@ export default function Home() {
           "https://api.jikan.moe/v4/anime?q=Demon Slayer"
         );
         const data = await response.json();
-
-        console.log(data, "du zé ruela");
 
         const demonSlayer = data.data.find(
           (a: AnimeApiResponse) =>
@@ -67,6 +66,8 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const toggleSidebar = () => setSidebarVisible((prev) => !prev); 
+
   if (showGif) {
     return (
       <div
@@ -93,31 +94,24 @@ export default function Home() {
 
   return (
     <Background>
-      <div>
-        <Header>
-          <h1>{anime.title}</h1>
-          <img src={anime.images.jpg.image_url} alt={anime.title} />
-          <Synopsis>
-            <p>
-              <strong>Sinopse:</strong>{" "}
-              {showFullSynopsis
-                ? anime.synopsis
-                : `${anime.synopsis.slice(0, 150)}...`}
-            </p>
-            <Button onClick={() => setShowFullSynopsis(!showFullSynopsis)}>
-              {showFullSynopsis ? "Mostrar menos" : "Leia mais"}
-            </Button>
-          </Synopsis>
-          <Button as={Link} href={anime.url} target="_blank">
-            Mais informações
-          </Button>
-        </Header>
+      <Sidebar visible={sidebarVisible}>
         <Nav>
           <Link href="/characters">Personagens</Link>
           <Link href="/episodies">Episódios</Link>
           <Link href="/about">Sobre o Anime</Link>
         </Nav>
-      </div>
+      </Sidebar>
+
+      <ToggleButton onClick={toggleSidebar}>
+        {sidebarVisible ? <FaTimes size={30} /> : <FaBars size={30} />}
+      </ToggleButton>
+
+      <MainContent>
+        <Header>
+          <h1>{anime.title}</h1>
+          <img src={anime.images.jpg.image_url} alt={anime.title} />
+        </Header>
+      </MainContent>
     </Background>
   );
 }
