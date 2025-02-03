@@ -11,6 +11,7 @@ import {
   Stats,
   CharacterList,
   CharacterCard,
+  MoreInfo,
 } from "./about";
 
 interface Anime {
@@ -20,7 +21,7 @@ interface Anime {
   rating: string;
   url: string;
   image: string;
-  trailer?: { embed_url: string }; 
+  trailer?: { embed_url: string };
   year?: number;
   episodes?: number;
   duration?: string;
@@ -68,7 +69,7 @@ export default function About() {
           rating: animeData.rating,
           url: animeData.url,
           image: animeData.images.jpg.image_url,
-          trailer: animeData.trailer ? { embed_url: animeData.trailer.embed_url } : undefined, 
+          trailer: animeData.trailer ? { embed_url: animeData.trailer.embed_url } : undefined,
           year: animeData.aired.prop.from.year,
           episodes: animeData.episodes,
           duration: animeData.duration,
@@ -121,49 +122,18 @@ export default function About() {
         <Content>
           <AnimeImage src={anime.image} alt={anime.title} />
           <h2>{anime.title}</h2>
-          <p>
-            <strong>Sinopse:</strong> {anime.synopsis}
-          </p>
-          <p>
-            <strong>Avaliação:</strong> {anime.rating} | <strong>Nota:</strong>{" "}
-            {anime.score}
-          </p>
-          <p>
-            <strong>Estúdios:</strong>{" "}
-            {anime.studios.map((s) => s.name).join(", ")}
-          </p>
-          <p>
-            <strong>Ano:</strong> {anime.year} | <strong>Episódios:</strong>{" "}
-            {anime.episodes} | <strong>Duração:</strong> {anime.duration}
-          </p>
-          <p>
-            <strong>Gêneros:</strong> {anime.genres.join(", ")}
-          </p>
+          <p><strong>Sinopse:</strong> {anime.synopsis}</p>
           <Stats>
-            <p>
-              📊 <strong>Rank:</strong> #{anime.rank}
-            </p>
-            <p>
-              👥 <strong>Membros:</strong> {anime.members}
-            </p>
-            <p>
-              🔥 <strong>Popularidade:</strong> #{anime.popularity}
-            </p>
-            <p>
-              ⭐ <strong>Favoritos:</strong> {anime.favorites}
-            </p>
+            <p>📊 <strong>Rank:</strong> #{anime.rank}</p>
+            <p>👥 <strong>Membros:</strong> {anime.members}</p>
+            <p>🔥 <strong>Popularidade:</strong> #{anime.popularity}</p>
+            <p>⭐ <strong>Favoritos:</strong> {anime.favorites}</p>
           </Stats>
-          {anime.trailer && anime.trailer.embed_url && (
+          {anime.trailer?.embed_url && (
             <TrailerContainer>
-              <iframe
-                src={anime.trailer.embed_url}
-                title="Trailer do Anime"
-                frameBorder="0"
-                allowFullScreen
-              />
+              <iframe src={anime.trailer.embed_url} title="Trailer do Anime" frameBorder="0" allowFullScreen />
             </TrailerContainer>
           )}
-
           <h3>Personagens Principais</h3>
           <CharacterList>
             {characters.map((char) => (
@@ -173,9 +143,7 @@ export default function About() {
               </CharacterCard>
             ))}
           </CharacterList>
-          <a href={anime.url} target="_blank" rel="noopener noreferrer">
-            Saiba mais
-          </a>
+          <MoreInfo href={anime.url} target="_blank" rel="noopener noreferrer">Saiba mais</MoreInfo>
         </Content>
       )}
     </Container>

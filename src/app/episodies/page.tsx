@@ -51,7 +51,6 @@ export default function Episodes() {
   return (
     <EpisodesContainer>
       <BackButton onClick={() => router.push("/")}>Voltar para Home</BackButton>
-
       {episodes.map((episode) => (
         <EpisodeCard key={episode.mal_id}>
           <EpisodeTitle>

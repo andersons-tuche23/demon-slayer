@@ -12,6 +12,7 @@ import {
   ToggleButton,
   CrunchyrollLink,
 } from "../app/home";
+import Footer from "./components/Footer";
 
 interface Image {
   jpg: {
@@ -85,13 +86,17 @@ export default function Home() {
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
+          width: "100vw",
           backgroundColor: "#000",
+          position: "fixed",
+          top: 0,
+          left: 0,
         }}
       >
         <img
-          src="/giphy.gif"
+          src="/slayer.gif"
           alt="Bem-vindo ao Demon Slayer"
-          style={{ width: "50%", maxWidth: "400px" }}
+          style={{ width: "80%", height: "80%", objectFit: "cover" }}
         />
       </div>
     );
@@ -141,6 +146,7 @@ export default function Home() {
           <span>Crunchyroll</span>
         </CrunchyrollLink>
       </div>
+      <Footer/>
     </Background>
   );
 }

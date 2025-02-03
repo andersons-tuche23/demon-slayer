@@ -108,8 +108,6 @@ export const Nav = styled.nav`
 `;
 
 export const MainContent = styled.div`
-  margin-left: 250px;
-  padding: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -123,14 +121,19 @@ export const MainContent = styled.div`
 `;
 
 export const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   margin-bottom: 20px;
+  width: 100%;
 
   h1 {
     font-size: 2.8rem;
     color: #fff;
     animation: ${fadeIn} 1s ease-in-out;
-    margin-bottom: 75px;
+    margin-bottom: 30px; 
 
     @media (max-width: 768px) {
       font-size: 2rem;
@@ -142,7 +145,6 @@ export const Header = styled.header`
     max-width: 400px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(255, 165, 0, 0.7);
-    margin: 20px 0;
     transition: transform 0.3s ease-in-out;
 
     &:hover {
@@ -151,7 +153,6 @@ export const Header = styled.header`
 
     @media (max-width: 768px) {
       max-width: 300px;
-      margin-top: 0px;
     }
   }
 `;
