@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { SiCrunchyroll } from "react-icons/si";
 import {
   Header,
   Nav,
@@ -10,7 +9,7 @@ import {
   Sidebar,
   MainContent,
   ToggleButton,
-  CrunchyrollLink,
+  NetflixLink,
 } from "../app/home";
 import Footer from "./components/Footer";
 
@@ -138,15 +137,15 @@ export default function Home() {
           gap: "8px",
         }}
       >
-        <CrunchyrollLink
-          href="https://www.crunchyroll.com/pt-br/demon-slayer-kimetsu-no-yaiba"
+        <NetflixLink
+          href="https://www.netflix.com/br/title/81091393"
           target="_blank"
         >
-          <SiCrunchyroll size={40} />
-          <span>Crunchyroll</span>
-        </CrunchyrollLink>
+          <img src="/netflix.png" alt="Netflix" width={40} height={40} />
+          <span>Netflix</span>
+        </NetflixLink>
       </div>
-      <Footer/>
+      <Footer />
     </Background>
   );
 }

@@ -196,16 +196,17 @@ export const ToggleButton = styled.button`
   }
 `;
 
-export const CrunchyrollLink = styled(Link)`
+export const NetflixLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #ff640a;
+  color: red;
 
   span {
-    font-size: 28px;
+    font-size: 38px;
     font-weight: bolder;
     font-family: sans-serif;
+    padding: 0 3px;
   }
 
   &:hover {

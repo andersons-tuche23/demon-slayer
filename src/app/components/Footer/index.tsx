@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
           <FaTwitter />
         </a>
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://facebook.com.br/" target="_blank" rel="noopener noreferrer">
           <FaFacebook />
         </a>
         <a href="https://github.com" target="_blank" rel="noopener noreferrer">
